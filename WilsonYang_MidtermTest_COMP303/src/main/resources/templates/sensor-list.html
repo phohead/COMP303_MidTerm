@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sensor List</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sensor List</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Sensor ID</th>	
+					<th>Name</th>
+					<th>Type</th>
+					<th>Pin</th>
+					<th>Status</th>
+					<th>Location</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr th:each="sensor : ${sensors}">
+					<td th:text="${sensor.sensorID}"></td>
+					<td th:text="${sensor.sensorName}"></td>
+					<td th:text="${sensor.sensorType}"></td>
+					<td th:text="${sensor.sensorPin}"></td>
+					<td th:text="${sensor.sensorStatus}"></td>
+					<td th:text="${sensor.sensorLocation}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+        <h3>Total Sensors: <span th:text="${count}"></span></h3>
+		
+		<div class="actions">
+			<a href="/sensors/add" class="btn">Add Sensor</a>
+			<form th:action="@{/sensors/exists}" method="get" style="display: inline; margin-left: 10px;">
+				<label for="sensorId">Enter Sensor ID:</label>
+				<input type="number" id="sensorId" name="sensorId" required style="margin-left: 5px; padding: 5px; width: 80px;">
+				<button type="submit">Check</button>
+			</form>
+		</div>
+    </div>
+</body>
+</html>

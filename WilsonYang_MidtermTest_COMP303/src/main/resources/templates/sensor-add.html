@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Sensor</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Sensor</h1>
+		<form th:action="@{/sensors/add}" th:object="${sensor}" method="post">
+			<div th:if="${#fields.hasErrors('sensorName')}" th:errors="*{sensorName}" class="alert alert-danger"></div>
+			<label>Sensor Name:</label>
+			<input type="text" th:field="*{sensorName}">
+			
+			<div th:if="${#fields.hasErrors('sensorType')}" th:errors="*{sensorType}" class="alert alert-danger"></div>
+			<label>Sensor Type:</label>
+			<input type="text" th:field="*{sensorType}">
+			
+			<div th:if="${#fields.hasErrors('sensorPin')}" th:errors="*{sensorPin}" class="alert alert-danger"></div>
+			<label>Sensor Pin:</label>
+			<input type="number" th:field="*{sensorPin}">
+			
+			<label>Sensor Location:</label>
+			<input type="text" th:field="*{sensorLocation}">
+			
+			<div th:if="${#fields.hasErrors('sensorStatus')}" th:errors="*{sensorStatus}" class="alert alert-danger"></div>
+			<label>Sensor Status:</label>
+			<select th:field="*{sensorStatus}">
+				<option value="ON">ON</option>
+				<option value="OFF">OFF</option>
+			</select>
+			
+			<button type="submit">Add Sensor</button>
+			<a href="/sensors" class="btn">Back to Sensor List</a>
+        </form>
+    </div>
+</body>
+</html>
